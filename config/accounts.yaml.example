@@ -1,0 +1,54 @@
+# ============================================
+# 账号配置文件
+# ============================================
+# ⚠️ 重要：此文件包含敏感信息！
+# 实际使用时请复制 accounts.yaml.example 为 accounts.yaml
+# 并填入真实账号密码，accounts.yaml 会被 .gitignore 忽略
+
+# 环境变量引用格式: ${ENV_VAR_NAME}
+# 示例: password: ${ADMIN_PASSWORD}
+
+# ============================================
+# 运营平台账号
+# ============================================
+admin_platform:
+  description: "运营平台管理员账号"
+  accounts:
+    - username: "${ADMIN_USERNAME}"
+      password: "${ADMIN_PASSWORD}"
+      role: "admin"
+      env: "pre"
+    - username: "${ADMIN_TEST_USERNAME}"
+      password: "${ADMIN_TEST_PASSWORD}"
+      role: "admin"
+      env: "test"
+
+# ============================================
+# 商家后台账号
+# ============================================
+merchant_platform:
+  description: "商家后台测试账号"
+  accounts:
+    - username: "${MERCHANT_USERNAME}"
+      password: "${MERCHANT_PASSWORD}"
+      role: "merchant"
+      env: "pre"
+      account_no: "17800000001"
+    - username: "${MERCHANT_TEST_USERNAME}"
+      password: "${MERCHANT_TEST_PASSWORD}"
+      role: "merchant"
+      env: "test"
+      account_no: "13900000001"
+
+# ============================================
+# 其他测试账号
+# ============================================
+other_accounts:
+  description: "其他测试系统账号"
+  accounts:
+    - system: "jira"
+      username: "${JIRA_USERNAME}"
+      password: "${JIRA_PASSWORD}"
+    - system: "confluence"
+      username: "${CONFLUENCE_USERNAME}"
+      password: "${CONFLUENCE_PASSWORD}"

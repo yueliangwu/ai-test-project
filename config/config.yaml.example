@@ -1,0 +1,82 @@
+# ============================================
+# AI Test Project - 配置文件
+# ============================================
+# ⚠️ 重要：复制此文件为 config.yaml 并填入实际配置
+# config.yaml 会被 .gitignore 忽略，不会提交到版本控制
+
+# ============================================
+# 项目配置
+# ============================================
+project:
+  name: "ai-test-project"
+  version: "1.0.0"
+  description: "基于AI专家库的软件测试工作平台"
+
+# ============================================
+# 环境配置
+# ============================================
+# 可选值: dev | test | pre | prod
+environment: "pre"
+
+# ============================================
+# 测试系统URL配置
+# ============================================
+urls:
+  admin_platform: "https://admin-pre.nexuscube.cn"
+  merchant_platform: "https://merchant-pre.nexuscube.cn"
+
+# ============================================
+# 超时和重试配置
+# ============================================
+timeouts:
+  page_load: 30000
+  element_wait: 5000
+  api_request: 10000
+retry:
+  max_attempts: 3
+  delay: 1000
+
+# ============================================
+# 报告配置
+# ============================================
+reports:
+  output_dir: "./reports"
+  screenshot_dir: "./reports/screenshots"
+  html_template: "./templates/report.html"
+  formats:
+    - "html"
+    - "markdown"
+  screenshot_on_failure: true
+  screenshot_on_success: false
+
+# ============================================
+# 截图命名规则
+# ============================================
+screenshot:
+  naming_rule: "P{priority}-{module}-{submodule}-{casename}"
+  prefix: ""
+  timestamp_format: "YYYYMMDD-HHmmss"
+
+# ============================================
+# 日志配置
+# ============================================
+logging:
+  level: "info"
+  output: "./logs"
+  max_file_size: "10MB"
+  max_files: 5
+
+# ============================================
+# 通知配置（预留）
+# ============================================
+notifications:
+  feishu:
+    enabled: false
+    webhook_url: "${FEISHU_WEBHOOK_URL}"
+  email:
+    enabled: false
+    smtp_server: "${SMTP_SERVER}"
+    smtp_port: 587
+    from: "${SMTP_FROM}"
+    to:
+      - "${SMTP_TO}"

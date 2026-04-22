@@ -1,0 +1,39 @@
+# AI Test Project - .gitignore
+# 保护敏感配置不被提交到版本控制
+
+# 环境配置（包含密码等敏感信息）
+config/environments/*.env
+config/environments/*.local
+config/accounts*.yaml
+config/accounts*.local
+
+# Node.js
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+package-lock.json
+
+# Playwright
+test-results/
+playwright-report/
+playwright/.cache/
+
+# 测试截图和报告（可以保留）
+# reports/
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+*~
+
+# OS
+.DS_Store
+Thumbs.db
+
+# 临时文件
+*.tmp
+*.temp
+.cache/

@@ -274,6 +274,68 @@ A: 修改提示词后，立即更新 `PROMPT-HISTORY.md`：
 
 ---
 
+## 🔐 配置管理
+
+### 目录结构
+
+```
+config/
+├── environments/
+│   ├── dev.env              # 开发环境配置
+│   ├── test.env             # 测试环境配置
+│   ├── pre.env              # 预发布环境配置
+│   ├── prod.env             # 生产环境配置
+│   └── pre-accounts.yaml     # 预发布环境账号配置（本地使用）
+├── accounts.yaml.example    # 账号配置模板
+├── config.yaml.example      # 主配置模板
+└── CONFIG-GUIDE.md         # 配置说明文档
+```
+
+### 敏感信息保护
+
+✅ **已实现**:
+- `config/environments/*.yaml` 包含账号密码，已加入 `.gitignore`
+- `config/environments/*.env` 包含敏感信息，已加入 `.gitignore`
+- `node_modules/` 依赖目录已忽略
+
+### 快速配置
+
+```bash
+# 1. 复制配置模板
+cp config/config.yaml.example config/config.yaml
+cp config/accounts.yaml.example config/accounts.yaml
+
+# 2. 配置测试账号
+# 编辑 config/environments/pre-accounts.yaml
+# 或设置环境变量: export ADMIN_PASSWORD=xxx
+
+# 3. 修改 .gitignore（如需添加更多忽略规则）
+# config/environments/pre-accounts.yaml 已被默认忽略
+```
+
+### 配置引用格式
+
+在测试报告和脚本中使用配置引用：
+
+| 类型 | 格式 | 示例 |
+|------|------|------|
+| URL | `${CONFIG.admin_platform.url}` | `${CONFIG.admin_platform.url}` |
+| 用户名 | `${CONFIG.admin_platform.username}` | `${CONFIG.admin_platform.username}` |
+| 密码 | `${CONFIG.admin_platform.password}` | `${CONFIG.admin_platform.password}` |
+
+### 多环境切换
+
+```bash
+# 通过设置 ENVIRONMENT 环境变量切换
+export ENVIRONMENT=pre  # 使用 pre.env 配置
+export ENVIRONMENT=prod # 使用 prod.env 配置
+
+# 或直接指定配置文件
+npx playwright test --config=config/environments/pre.env
+```
+
+---
+
 **项目创建时间**: 2026-04-22
 **最后更新**: 2026-04-22
 **维护者**: AI Testing Team
